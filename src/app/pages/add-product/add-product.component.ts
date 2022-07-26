@@ -7,12 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddProductComponent implements OnInit {
   email!: string;
-  password!: string;
   constructor() {}
 
   ngOnInit(): void {}
 
-  onEmailChange(event: string) {
-    console.log(`Değer değişti ${event}`);
+  changeEmail() {
+    this.email = 'blabla';
+  }
+  onEmailChange(event: any) {
+    console.log(event);
   }
 }
