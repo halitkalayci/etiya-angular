@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductListComponent implements OnInit {
   productList!: any[];
+  cartItems: any[] = [];
   constructor() {}
 
   ngOnInit(): void {
@@ -81,5 +82,12 @@ export class ProductListComponent implements OnInit {
         customerKey: 'BERGS',
       },
     ];
+  }
+
+  addToCart(productName: string) {
+    let itemToFind = this.cartItems.find(c => c == productName);
+    if (!itemToFind) {
+      this.cartItems.push(productName);
+    }
   }
 }
