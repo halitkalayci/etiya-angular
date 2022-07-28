@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { HttpClient } from '@angular/common/http';
 import { Product } from './models/product';
 
 @Component({
@@ -14,6 +15,8 @@ export class AppComponent implements OnInit {
     { label: 'Product List', url: '/product-list' }
   ];
   links1: string[] = ['Home', 'Add Product', 'Product List'];
+
+  constructor() {}
 
   ngOnInit(): void {
     this.counter += 5;
