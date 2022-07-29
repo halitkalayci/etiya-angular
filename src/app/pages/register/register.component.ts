@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
+import { Customer } from 'src/app/models/customer';
+import { CustomersService } from 'src/app/services/customers/customers.service';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  registerForm!: FormGroup;
+  registerForm!: FormGroup; // state
 
   // companyName = new FormControl('', Validators.required);
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private customerService: CustomersService) {}
 
   ngOnInit(): void {
     this.createRegisterForm();
@@ -22,7 +25,16 @@ export class RegisterComponent implements OnInit {
       companyName: [
         '', // default değer
         [Validators.required, Validators.minLength(2)] // doğrulama
-      ]
+      ],
+      contactName: ['', Validators.required],
+      contactTitle: ['', Validators.required],
+      street: ['', Validators.required],
+      city: ['', Validators.required],
+      region: ['', Validators.required],
+      postalCode: ['', Validators.required],
+      country: ['', Validators.required],
+      phone: ['', Validators.required],
+      customerKey: ['', Validators.required]
     });
     // new FormGroup({
     //   companyName: this.companyName,
@@ -30,12 +42,19 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void {
-    if (!this.registerForm.valid) {
+    if (this.registerForm.invalid) {
       // geçersiz
       console.warn('Gerekli alanları doldurunuz.');
       return;
     }
 
-    console.log(this.registerForm.value);
+    const customer: Customer = {
+      ...this.registerForm.value,
+      city: this.registerForm.value.city.toUpperCase()
+    };
+
+    this.customerService.add(customer).subscribe(response => {
+      console.info(response);
+    });
   }
 }
