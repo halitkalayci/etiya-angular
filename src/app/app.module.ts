@@ -10,6 +10,8 @@ import { NgModule } from '@angular/core';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { KdvPipe } from './pipes/kdv/kdv.pipe';
+import { SaleDirective } from './directives/sale/sale.directive';
 
 @NgModule({
   declarations: [
@@ -20,15 +22,11 @@ import { RegisterComponent } from './pages/register/register.component';
     NavbarComponent,
     ProductCardComponent,
     RegisterComponent,
+    KdvPipe,
+    SaleDirective
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
