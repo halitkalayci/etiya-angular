@@ -1,9 +1,26 @@
 <p>Sepetinizde {{ cartItems.length }} ürün var.</p>
 
 <div class="row">
-  <div *ngFor="let p of productList" class="col-4">
-    <etiya-product-card
-      (onBtnClick)="addToCart($event)"
-      [product]="p"></etiya-product-card>
-  </div>
+  <ng-container [ngSwitch]="status">
+    <h1 *ngSwitchCase="'init'">Welcome!</h1>
+    <div *ngSwitchCase="'loading'" class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+
+    <ng-container *ngSwitchCase="'loaded'">
+
+      <ng-container *ngIfNot="productList.length === 0; else notFound">
+        <div *ngFor="let p of productList" class="col-4">
+          <etiya-product-card (onBtnClick)="addToCart($event)" [product]="p"></etiya-product-card>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <div *ngSwitchDefault class="alert alert-danger" role="alert">
+      A simple danger alert—check it out!
+      <span></span>
+    </div>
+  </ng-container>
 </div>
+
+<ng-template #notFound>Ürün Yok.</ng-template>
