@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [IfNotDirective],
-  imports: [CommonModule, CoreRoutingModule],
+  imports: [CommonModule, CoreRoutingModule, AuthModule],
   exports: [IfNotDirective]
 })
 export class CoreModule {}
