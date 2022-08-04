@@ -5,6 +5,7 @@ import { Directive, ElementRef, HostListener, Input, OnInit, Renderer2 } from '@
 })
 export class SaleDirective implements OnInit {
   // Attribute Directive
+  // İlgili elemanın davranışını veya özelliklerini ele alır.
   @Input() onSaleColor: string = 'yellow';
   @Input() onSaleText: string = 'On Sale!';
   @Input() isOnSale: boolean = true;

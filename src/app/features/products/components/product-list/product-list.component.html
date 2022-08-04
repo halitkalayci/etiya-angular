@@ -8,12 +8,11 @@
     </div>
 
     <ng-container *ngSwitchCase="'loaded'">
-
-      <ng-container *ngIfNot="productList.length === 0; else notFound">
+      <div *ngIfNot="productList.length === 0; else notFound">
         <div *ngFor="let p of productList" class="col-4">
           <etiya-product-card (onBtnClick)="addToCart($event)" [product]="p"></etiya-product-card>
         </div>
-      </ng-container>
+      </div>
     </ng-container>
 
     <div *ngSwitchDefault class="alert alert-danger" role="alert">
