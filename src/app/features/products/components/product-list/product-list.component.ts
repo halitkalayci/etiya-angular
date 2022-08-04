@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { Product } from 'src/app/models/product';
-import { ProductsService } from 'src/app/services/products/products.service';
+import { ProductsService } from 'src/app/features/products/services/products/products.service';
 
 @Component({
   selector: 'etiya-product-list',

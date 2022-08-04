@@ -4,6 +4,8 @@ import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
   selector: '[ngIfNot]'
 })
 export class IfNotDirective {
+  // Structural Directive
+  // İlgili elemanın yapısını ele alıyor.
   @Input('ngIfNotElse') elseTemplateRef!: TemplateRef<any>;
 
   private hasView: boolean = false;
@@ -15,6 +17,7 @@ export class IfNotDirective {
 
   @Input() set ngIfNot(condition: boolean) {
     if (condition === false && !this.hasView) {
+      this.viewContainerRef.clear();
       this.viewContainerRef.createEmbeddedView(this.templateRef);
       this.hasView = true;
     } else if (condition === true && this.hasView) {
