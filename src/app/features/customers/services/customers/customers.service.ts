@@ -1,4 +1,4 @@
-import { Customer } from 'src/app/models/customer';
+import { Customer } from 'src/app/features/customers/models/customer';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';

@@ -1,12 +1,13 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-
+import { HomepageComponent } from './pages/homepage/homepage.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { NgModule } from '@angular/core';
+import { ProductsModule } from '../features/products/products.module';
+import { SharedRoutingModule } from './shared-routing.module';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
+  declarations: [NavbarComponent, HomepageComponent],
+  imports: [CommonModule, SharedRoutingModule, ProductsModule],
+  exports: [NavbarComponent]
 })
-export class SharedModule { }
+export class SharedModule {}

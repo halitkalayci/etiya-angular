@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
-import { Product } from 'src/app/models/product';
+import { Product } from 'src/app/features/products/models/product';
 
 @Component({
   selector: 'etiya-navbar',
