@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { CoreRoutingModule } from './core-routing.module';
 import { IfNotDirective } from './directives/ifNot/if-not.directive';
 import { NgModule } from '@angular/core';
+import { StorageModule } from './storage/storage.module';
 
 @NgModule({
   declarations: [IfNotDirective],
-  imports: [CommonModule, CoreRoutingModule, AuthModule],
+  imports: [CommonModule, CoreRoutingModule, AuthModule, StorageModule],
   exports: [IfNotDirective]
 })
 export class CoreModule {}
