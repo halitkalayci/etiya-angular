@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { HttpClient } from '@angular/common/http';
-import { Product } from 'src/app/features/products/models/product';
+import { AuthService } from 'src/app/core/auth/services/auth/auth.service';
 
 @Component({
   selector: 'etiya-navbar',
@@ -9,7 +8,13 @@ import { Product } from 'src/app/features/products/models/product';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
+
+  testAuth() {
+    this.authService.test().subscribe(response => {
+      console.log(response);
+    });
+  }
 }

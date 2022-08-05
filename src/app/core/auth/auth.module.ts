@@ -1,6 +1,8 @@
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+
+import { AuthInterceptor } from './intercepters/auth/auth.interceptor';
 import { AuthRoutingModule } from './auth-routing.module';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NgModule } from '@angular/core';
@@ -22,6 +24,7 @@ import { tokenGetter } from './services/auth/auth.service';
         disallowedRoutes: []
       }
     })
-  ]
+  ],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }]
 })
 export class AuthModule {}
