@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 import { UserForLoginModel } from '../../models/userForLoginModel';
 
 @Component({
@@ -11,7 +12,11 @@ import { UserForLoginModel } from '../../models/userForLoginModel';
 export class LoginPageComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.createLoginForm();
@@ -33,6 +38,7 @@ export class LoginPageComponent implements OnInit {
 
     this.authService.login(userForLoginModel).subscribe(response => {
       this.authService.saveAuth(response);
+      this.router.navigateByUrl('');
     });
   }
 }
