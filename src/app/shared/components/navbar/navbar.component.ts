@@ -7,11 +7,12 @@ import { TokenUserModel } from 'src/app/core/auth/models/tokenUserModel';
 @Component({
   selector: 'etiya-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
   tokenUserModel$!: Observable<TokenUserModel | undefined>;
 
+  // DI => Dependency Injection
   constructor(private authService: AuthService) {
     this.tokenUserModel$ = this.authService.tokenUserModel$;
   }

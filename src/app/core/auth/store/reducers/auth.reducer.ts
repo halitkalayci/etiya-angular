@@ -1,5 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
-import { removeTokenUserModel, setTokenUserModel } from '../actions/auth.actions';
+import {
+  removeTokenUserModel,
+  setTokenUserModel,
+} from '../actions/auth.actions';
 
 import { TokenUserModel } from '../../models/tokenUserModel';
 
@@ -8,7 +11,7 @@ export interface AuthState {
 }
 
 const initialAuthState: AuthState = {
-  tokenUserModel: undefined
+  tokenUserModel: undefined,
 };
 
 // const state = {
@@ -24,10 +27,17 @@ const initialAuthState: AuthState = {
 //   tokenUserModel: undefined
 // }; // x05312132
 
+// 1.parametre initial state => ilk durum girişYaptı=false, token:null
+// 2+ parametreler => oluşturuduğumuz aksiyonların içini doldurur
 export const authReducer = createReducer(
   initialAuthState,
   on(setTokenUserModel, (state, action) => {
     // 1. paramtere o anki state değeri, 2. parametre üzerinde çalıştığımız action
+    // state => depodaki o an genel durum.
+    // action => bu fonksiyon ve içeriği
+    // spread operator kullanma sebebimiz = depo bizden tüm statei geri istiyor
+    // bizi ilgilendirmeyen (fonksiyonu kullanırken) bozmak istemiyoruz
+    // diğer tüm state'i olduğu gibi geri yolluyorum
     return { ...state, tokenUserModel: action.tokenUserModel };
   }),
   on(removeTokenUserModel, state => {
@@ -38,3 +48,7 @@ export const authReducer = createReducer(
 // state = {
 //     tokenUserModel: action.tokenUserModel
 // } // x48746546
+
+export const sumOfTwoNumbers = (a: any, b: any) => {
+  return a + b;
+};

@@ -12,15 +12,17 @@ import { UserForLoginModel } from '../../models/userForLoginModel';
 import { UserLoginResponseModel } from '../../models/userLoginResponseModel';
 import { environment } from 'src/environments/environment';
 import { setTokenUserModel } from '../../store/actions/auth.actions';
+import { AuthState } from '../../store/reducers/auth.reducer';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   tokenUserModel$: Observable<TokenUserModel | undefined> = this.store
     .select(state => state.appAuth)
     .pipe(map(state => state.tokenUserModel));
 
+  // map => gelen değere göre farklı bi değer çeviriyor
   apiControllerUrl: string = `${environment.apiUrl}/auth`;
 
   constructor(
@@ -30,7 +32,9 @@ export class AuthService {
     private store: Store<AuthStates>
   ) {}
 
-  login(userForLoginModel: UserForLoginModel): Observable<UserLoginResponseModel> {
+  login(
+    userForLoginModel: UserForLoginModel
+  ): Observable<UserLoginResponseModel> {
     return this.httpClient.post<UserLoginResponseModel>(
       `${this.apiControllerUrl}/login`,
       userForLoginModel
@@ -39,11 +43,15 @@ export class AuthService {
 
   saveAuth(userLoginResponseModel: UserLoginResponseModel) {
     this.localStorageService.set('token', userLoginResponseModel.access_token);
-    this.setTokenUserModel(this.jwtHelperService.decodeToken(this.jwtHelperService.tokenGetter()));
+    this.setTokenUserModel(
+      this.jwtHelperService.decodeToken(this.jwtHelperService.tokenGetter())
+    );
   }
 
   test(): Observable<MessageResultModel> {
-    return this.httpClient.get<MessageResultModel>(`${this.apiControllerUrl}/test`);
+    return this.httpClient.get<MessageResultModel>(
+      `${this.apiControllerUrl}/test`
+    );
   }
 
   get isAuthenticated(): boolean {
