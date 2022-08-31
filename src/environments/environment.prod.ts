@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://kodlama.io:5000'
+  apiUrl: 'https://kodlama.io:5000',
 };
